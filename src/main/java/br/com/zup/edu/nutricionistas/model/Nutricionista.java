@@ -33,10 +33,10 @@ public class Nutricionista {
         this.crn = crn;
     }
 
-    @Deprecated
     /**
      * @deprecated Construtor para uso exclusivo do Hibernate.
      */
+    @Deprecated
     public Nutricionista() {
     }
 
