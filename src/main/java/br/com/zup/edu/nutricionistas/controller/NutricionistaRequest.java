@@ -1,53 +1,57 @@
 package br.com.zup.edu.nutricionistas.controller;
 
+import br.com.zup.edu.nutricionistas.model.Nutricionista;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 public class NutricionistaRequest {
+
     @NotBlank
     private String nome;
-
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String CRN;
 
     @NotBlank
     @CPF
     private String cpf;
 
+    @NotNull
+    @Past
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
-    public NutricionistaRequest(String nome, String email, String CRN, String cpf, LocalDate dataNascimento) {
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotBlank
+    private String crn;
+
+    public Nutricionista paraNutricionista() {
+        return new Nutricionista(nome,cpf,dataNascimento,email,crn);
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
-        this.email = email;
-        this.CRN = CRN;
+    }
+
+    public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getNome() {
-        return nome;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCRN() {
-        return CRN;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public void setCrn(String crn) {
+        this.crn = crn;
     }
 }
